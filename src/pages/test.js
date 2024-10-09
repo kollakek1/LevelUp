@@ -8,7 +8,7 @@ export async function GET({ request }) {
     // }
   
     // Получаем объект Node.js socket и используем его для обновления соединения до WebSocket
-    const { socket, response } = Deno.upgradeWebSocket(request);
+    const { socket, response } = request;
   
     // Обработка событий WebSocket
     socket.onopen = () => {
