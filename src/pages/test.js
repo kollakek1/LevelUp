@@ -26,7 +26,7 @@ export async function GET({ request }) {
     };
   
     socket.onerror = (err) => {
-      console.error('WebSocket error:', err);
+      console.error('WebSocket error:', JSON.stringify(err));
     };
   
     // Возвращаем обновленный ответ
