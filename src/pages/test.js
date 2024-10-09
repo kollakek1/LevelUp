@@ -1,34 +1,46 @@
-export async function GET({ request }) {
-    // Получаем оригинальные объекты Node.js из запроса
-    const { socket: nodeSocket, headers } = request;
-  
-    // // Проверяем заголовки для обработки WebSocket соединения
-    // if (headers.get('upgrade') !== 'websocket') {
-    //   return new Response('Expected WebSocket', { status: 426 });
-    // }
-  
-    // Получаем объект Node.js socket и используем его для обновления соединения до WebSocket
-    const { socket, response } = request;
-  
-    // Обработка событий WebSocket
-    socket.onopen = () => {
-      console.log('Client connected to WebSocket');
-    };
-  
-    socket.onmessage = (event) => {
-      console.log(`Received message: ${event.data}`);
+// src/pages/api/test.js
+import { WebSocketServer } from 'ws';
+
+let wss;
+
+// Инициализируем WebSocket сервер, если он еще не создан
+if (!wss) {
+  wss = new WebSocketServer({ noServer: true });
+
+  wss.on('connection', (ws) => {
+    console.log('Client connected to WebSocket');
+
+    // Отправляем приветственное сообщение
+    ws.send('Welcome to the WebSocket server!');
+
+    ws.on('message', (message) => {
+      console.log(`Received message: ${message}`);
       // Отправляем ответ клиенту
-      socket.send(`Server received: ${event.data}`);
-    };
-  
-    socket.onclose = () => {
+      ws.send(`Server received: ${message}`);
+    });
+
+    ws.on('close', () => {
       console.log('Client disconnected');
-    };
-  
-    socket.onerror = (err) => {
-      console.error('WebSocket error:', JSON.stringify(err));
-    };
-  
-    // Возвращаем обновленный ответ
-    return response;
+    });
+
+    ws.on('error', (err) => {
+      console.error('WebSocket error:', err);
+    });
+  });
+}
+
+export async function GET({ request }) {
+  // Проверяем, является ли запрос WebSocket
+  if (request.headers.get('upgrade') !== 'websocket') {
+    return new Response('Expected WebSocket', { status: 426 });
   }
+
+  const { socket, response } = Deno.upgradeWebSocket(request);
+
+  // Обрабатываем события WebSocket
+  wss.handleUpgrade(request, socket, request.headers, (ws) => {
+    wss.emit('connection', ws, request);
+  });
+
+  return response; // Возвращаем ответ
+}
