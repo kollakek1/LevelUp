@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Sign from '../components/sign';
+import Preload from '../components/preload';
 ---
 
-<Layout title="Главная">
+<Layout title="Авторизация">
+    <Preload />
 	<main class="text-center h-screen w-full flex items-center justify-center">
-		<h1 class="text-3xl font-bold">Скоро, а может и не скоро</h1>
+		<Sign>
 	</main>
 </Layout>
 

@@ -7,44 +7,39 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="ЛевелАп — общайся, играй, развивайся! Это новый игровой мессенджер для русскоязычных пользователей, объединяющий людей со всего мира." />
+    <meta name="keywords" content="ЛевелАп, мессенджер, игры, общение, геймеры, чаты, голосовые каналы, игры онлайн" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="ЛевелАп — новый игровой мессенджер" />
+    <meta property="og:description" content="Общайся. Играй. Развивайся. ЛевелАп — это игровой мессенджер для русскоязычных геймеров." />
+    <!-- <meta property="og:image" content="/images/levelup-preview.png" />
+    <meta property="og:url" content="https://levelup.ru" /> -->
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter мета-теги -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ЛевелАп — игровой мессенджер для геймеров" />
+    <meta name="twitter:description" content="Общайся. Играй. Развивайся с ЛевелАп!" />
+    <meta name="twitter:image" content="/images/levelup-twitter-preview.png" />
+
+    <!-- Favicon и другие иконки -->
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" /> -->
+    
+    <!-- Генератор и авторское право -->
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="LevelUp Team" />
+    
+    <title>{title} | ЛевелАп — Общайся. Играй. Развивайся.</title>
+  </head>
+  <body>
+      <slot />
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
+
