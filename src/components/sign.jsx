@@ -17,8 +17,9 @@ export default function Sign(){
                     <span className="label-text-alt hover:link">Забыли пароль?</span>
                 </div>
             </label>
-
+            
             <button className="btn btn-primary w-full">Вход</button>
+            <p className="mt-4 lg:mt-1 lg:text-start max-lg:text-xl">Нужна учетная запись? <span className="hover:link text-primary">Зарегестрируйтесь!</span></p>
             <div className="mt-6 max-lg:hidden flex justify-between gap-3 w-min">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example" loading="lazy" alt="qr code" className="w-24 h-24 rounded-btn" />
                 <div className="m-auto">
