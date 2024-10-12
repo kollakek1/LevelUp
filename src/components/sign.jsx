@@ -19,6 +19,13 @@ export default function Sign(){
             </label>
 
             <button className="btn btn-primary w-full">Вход</button>
+            <div className="mt-6 max-lg:hidden flex justify-between gap-3 w-min">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example" loading="lazy" alt="qr code" className="w-24 h-24 rounded-btn" />
+                <div className="m-auto">
+                    <h2 className="text-xl w-max font-bold">Авторизация по QR коду</h2>
+                    <p>Отсканируйте QR код для быстрого входа в систему.</p>
+                </div>
+            </div>
         </div>
     )
 }

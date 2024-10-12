@@ -1,54 +1,49 @@
-# Astro Starter Kit: Basics
+# ЛевелАп (LevelUp) 🎮
 
-```sh
-npm create astro@latest -- --template basics
-```
+**Общайся. Играй. Развивайся.**
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+ЛевелАп — это новый игровой мессенджер для геймеров, который объединяет игроков для общения и взаимодействия. С его помощью вы сможете легко создавать голосовые и текстовые чаты, организовывать игровые сессии и быть в курсе событий игрового мира.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Функционал
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- 🗣️ **Текстовые и голосовые каналы** — общайся с друзьями и сообществом в удобных чатах.
+- 🎮 **Поддержка игровых кланов** — создавай и управляй кланами, организуй игровые события.
+- 🔒 **Надежная авторизация** — защита данных пользователей с использованием Auth.js.
+- 💬 **Мгновенные обновления** — сообщения и данные обновляются в реальном времени благодаря Pusher.
+- 🌍 **Кроссплатформенность** — доступен на Web, Desktop (Electron) и Mobile (Capacitor Ionic).
 
-## 🚀 Project Structure
+## 🛠️ Стек технологий
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Frontend**: [Astro](https://astro.build), [React](https://reactjs.org), [Tailwind CSS](https://tailwindcss.com) + [DaisyUI](https://daisyui.com)
+- **Backend**: [Node.js](https://nodejs.org), [MongoDB](https://www.mongodb.com), [Pusher](https://pusher.com)
+- **Desktop**: [Electron](https://www.electronjs.org)
+- **Mobile**: [Capacitor](https://capacitorjs.com), [Ionic](https://ionicframework.com)
+- **Hosting**: [Vercel](https://vercel.com)
+- **Version Control**: [GitHub](https://github.com)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 💻 Вклад в проект
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Мы приветствуем вклад сообщества в развитие "ЛевелАп"! Чтобы помочь нам сделать проект лучше, выполните следующие шаги:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. **Форкните** этот репозиторий.
+2. Создайте **новую ветку** для своих изменений:
+    ```bash
+    git checkout -b feature/my-awesome-feature
+    ```
+3. **Коммитните** свои изменения:
+    ```bash
+    git commit -m 'Добавлена новая крутая фича'
+    ```
+4. **Отправьте** свои изменения:
+    ```bash
+    git push origin feature/my-awesome-feature
+    ```
+5. Создайте **Pull Request** для обсуждения и внесения изменений.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🛡️ Лицензия
 
-## 🧞 Commands
+Этот проект лицензирован под [GNU General Public License](./LICENSE).
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Спасибо за ваш интерес к проекту ЛевелАп! Присоединяйтесь к нашему сообществу и помогите сделать этот мессенджер лучше!
