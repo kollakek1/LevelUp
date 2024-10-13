@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!doctype html>
@@ -37,6 +39,8 @@ const { title } = Astro.props;
     <meta name="author" content="LevelUp Team" />
     
     <title>{title} | ЛевелАп — Общайся. Играй. Развивайся.</title>
+
+    <ViewTransitions />
   </head>
   <body>
       <slot />

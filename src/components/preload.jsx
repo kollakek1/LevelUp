@@ -23,8 +23,8 @@ export default function Preload() {
 
     return (
         <div
-            className={`w-screen h-screen flex items-center justify-center bg-base-100 fixed transition-opacity duration-500 ${
-                !load ? "opacity-0 pointer-events-none" : "z-50"
+            className={`w-screen h-screen flex items-center justify-center bg-base-100 fixed transition-opacity duration-500 z-50 ${
+                !load ? "opacity-0 pointer-events-none" : ""
             }`}
         >
             <div className="text-center">

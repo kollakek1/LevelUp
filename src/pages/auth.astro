@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Sign from '../components/sign';
 import Preload from '../components/preload';
+const user = Astro.locals.user;
+if (user) {
+	return Astro.redirect("/app");
+}
 ---
 
 <Layout title="Авторизация">

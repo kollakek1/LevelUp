@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppRouting from '../../components/app/routing';
+const user = Astro.locals.user;
+if (!user) {
+	return Astro.redirect("/auth");
+}
+---
+
+<Layout title="Главная">
+	<main class="">
+		<AppRouting client:only="react" user={user}/>
+	</main>
+</Layout>
+
