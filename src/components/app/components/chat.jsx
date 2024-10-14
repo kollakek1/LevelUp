@@ -1,4 +1,4 @@
-import { MdArrowBackIos, MdOutlineAddCircle } from "react-icons/md";
+import { MdArrowBackIos, MdOutlineAddCircle, MdSend } from "react-icons/md";
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,11 +15,13 @@ export default function Chat({ user, active }) {
                 </div>
 
                 <div className="textarea items-center gap-2 absolute bottom-0 bg-base-200 w-full p-2 flex justify-between max-lg:rounded-none text-lg">
-                    <MdOutlineAddCircle className="w-7 h-7"/>
+                    <MdOutlineAddCircle className="w-7 h-7 duration-150 hover:text-primary cursor-pointer"/>
                     <div className="max-lg:bg-base-300 rounded-btn p-1 w-full flex items-center">
                         <div contentEditable="true" className="w-full block min-h-7 max-h-16 overflow-y-auto outline-none box-border break-words">
+                            
                         </div>
                     </div>
+                    <MdSend className="w-7 h-7 duration-150 hover:text-primary cursor-pointer"/>
                 </div>
             </div>
         </div>
