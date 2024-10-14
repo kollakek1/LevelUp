@@ -11,13 +11,14 @@ export default function Chat({ user, active }) {
             <div className="w-full h-full relative">
                 <div className="w-full bg-base-200 lg:rounded-box relative p-3 flex items-center justify-between">
                     <MdArrowBackIos className="w-7 h-7 lg:hidden" onClick={() => navigate("/app/@me")}/>
-                    <h2 className="text-sm font-medium">Nigger</h2>
+                    <h2 className="text-sm font-medium">Your Title</h2>
                 </div>
 
-                <div className="input max-lg:!outline-none max-lg:border-0 items-center gap-2 absolute bottom-0 bg-base-200 w-full p-2 flex justify-between max-lg:rounded-none h-16 text-lg">
+                <div className="textarea items-center gap-2 absolute bottom-0 bg-base-200 w-full p-2 flex justify-between max-lg:rounded-none text-lg">
                     <MdOutlineAddCircle className="w-7 h-7"/>
-                    <div className="grow max-lg:bg-base-300 rounded-btn p-1 w-full">
-                        <input type="text" className="w-full" placeholder="Написать @nigger" />
+                    <div className="max-lg:bg-base-300 rounded-btn p-1 w-full flex items-center">
+                        <div contentEditable="true" className="w-full block min-h-7 max-h-16 overflow-y-auto outline-none box-border break-words">
+                        </div>
                     </div>
                 </div>
             </div>
