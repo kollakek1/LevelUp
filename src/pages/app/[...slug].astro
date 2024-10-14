@@ -7,9 +7,7 @@ if (!user) {
 }
 ---
 
-<Layout title="Главная">
-	<main class="">
-		<AppRouting client:only="react" user={user}/>
-	</main>
+<Layout title="Главная" fixed={true}>
+	<AppRouting client:only="react" user={user}/>
 </Layout>
 

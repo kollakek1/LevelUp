@@ -1,9 +1,10 @@
 ---
 interface Props {
 	title: string;
+  fixed?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, fixed = false } = Astro.props;
 
 import { ViewTransitions } from 'astro:transitions';
 ---
@@ -42,7 +43,7 @@ import { ViewTransitions } from 'astro:transitions';
 
     <ViewTransitions />
   </head>
-  <body>
+  <body class={fixed ? "overflow-y-hidden" : ""}>
       <slot />
   </body>
 </html>
