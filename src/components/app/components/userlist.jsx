@@ -1,21 +1,31 @@
-import { MdPeopleAlt, MdOutlineSettingsSuggest } from "react-icons/md";
+import { MdPeopleAlt, MdOutlineSettingsSuggest, MdOutlineNewspaper, MdOutlineSentimentVerySatisfied } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export default function Routing({ user }) {
+export default function Routing({ user, setUserProfile, userProfile }) {
     const navigate = useNavigate();
 
     return (
         <>
             <div className="relative w-full lg:w-72">
                 <div className="h-screen w-full bg-base-200 p-2">
-                    <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
-                        <MdPeopleAlt className="w-7 h-7"/>
-                        Друзья
-                    </button>
+                    <div className="w-full flex flex-col gap-1">
+                        <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
+                            <MdPeopleAlt className="w-7 h-7"/>
+                            Друзья
+                        </button>
+                        <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
+                            <MdOutlineNewspaper className="w-7 h-7"/>
+                            Обновления
+                        </button>
+                    </div>
+
                     <p className="mt-3 text-sm font-medium text-center opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
                     <div className="mt-2 w-full flex flex-col gap-1">
-                        <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/nigger")}>
-                            <p className="text-sm font-medium">TestUser</p>
+                        <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex items-center max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/nigger")}>
+                            <div>
+                                <p className="text-sm font-medium">TestUser</p>
+                                <p className="text-xs">@TestUser</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,6 +42,10 @@ export default function Routing({ user }) {
             </div>
             <div className="fixed bottom-0 w-full p-2 lg:hidden">
                 <div className="bg-base-100 p-3 rounded-box shadow-lg border border-primary/30 flex justify-between items-center">
+                    <div onClick={() => setUserProfile(user)}>
+                        <MdOutlineSentimentVerySatisfied className={`w-8 h-8 m-auto duration-300 ${userProfile ? 'scale-90' : ''}`}/>
+                        <p className="text-[0.6rem] text-base-content/70">Профиль</p>
+                    </div>
                     <div onClick={() => navigate("/app/settings")}>
                         <MdOutlineSettingsSuggest className={`w-8 h-8 m-auto duration-300 ${location.pathname.startsWith('/app/settings') ? 'scale-90' : ''}`}/>
                         <p className="text-[0.6rem] text-base-content/70">Настройки</p>
