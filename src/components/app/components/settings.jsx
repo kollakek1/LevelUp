@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import { MdExitToApp, MdArrowBackIosNew, MdWindow, MdEmojiEmotions } from "react-icons/md";
+import { MdExitToApp, MdArrowBackIosNew, MdWindow, MdEmojiEmotions, MdOutlineBugReport } from "react-icons/md";
 
 import User from "./settings/user";
 import Ui from "./settings/ui";
+import Debug from "./settings/debug";
 export default function Settings({ user, active }) {
 
     const navigate = useNavigate();
@@ -22,6 +23,9 @@ export default function Settings({ user, active }) {
                     <button className={`btn w-full ${location.pathname === '/app/settings/ui' ? 'btn-primary btn-active' : 'btn-outline'}`} onClick={() => navigate('/app/settings/ui')}>
                         <MdWindow className="w-7 h-7"/> Интерфейс
                     </button>
+                    <button className={`btn w-full ${location.pathname === '/app/settings/debug' ? 'btn-primary btn-active' : 'btn-outline'}`} onClick={() => navigate('/app/settings/debug')}>
+                        <MdOutlineBugReport className="w-7 h-7"/> Дебаг
+                    </button>
                     <button className="btn w-full btn-outline btn-error" onClick={() => {fetch("/api/sign/logout", {method: "POST"}).then(() => window.location.reload());}}>
                         <MdExitToApp className="w-7 h-7"/> Выйти
                     </button>
@@ -29,6 +33,7 @@ export default function Settings({ user, active }) {
                 <div className={`absolute top-0 left-0 lg:relative w-full h-full ${location.pathname === '/app/settings' || location.pathname === '/app/settings/' ? "pointer-events-none" : ""}`}>
                     <User user={user} active={location.pathname.startsWith('/app/settings/user')}/>
                     <Ui active={location.pathname.startsWith('/app/settings/ui')}/>
+                    <Debug active={location.pathname.startsWith('/app/settings/debug')}/>
                 </div>
             </div>
         </div>

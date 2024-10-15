@@ -13,7 +13,7 @@ export default function Routing({ user }) {
                 </button>
                 <p className="mt-3 text-sm font-medium text-center opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
                 <div className="mt-2 w-full flex flex-col gap-1">
-                    <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex max-lg:bg-base-100 lg:hover:bg-base-100" onClick={() => navigate("/app/@me/nigger")}>
+                    <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/nigger")}>
                         <p className="text-sm font-medium">Nigger</p>
                     </div>
                 </div>

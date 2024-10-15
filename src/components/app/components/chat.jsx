@@ -66,7 +66,7 @@ export default function Chat({ user, active }) {
                     <MdOutlineAddCircle className="w-7 h-7 duration-150 hover:text-primary cursor-pointer" />
                     <div
                         contentEditable="plaintext-only"
-                        className="w-full text-white/70 min-h-7 max-h-32 lg:max-h-96 bg-base-300 rounded-btn overflow-y-auto outline-none box-border break-words p-2"
+                        className="w-full min-h-7 max-h-32 lg:max-h-96 bg-base-300 rounded-btn overflow-y-auto outline-none box-border break-words p-2"
                         onInput={handleInput}
                     ></div>
                     <MdSend
