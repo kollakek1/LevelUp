@@ -30,8 +30,8 @@ export default function Routing({ user }) {
                     </div>
                 </div>
             </div>
-            <div className="fixed bottom-0 w-full p-4 lg:hidden">
-                <div className="bg-base-100 p-4 rounded-box shadow-lg border border-primary/30 flex justify-between items-center">
+            <div className="fixed bottom-0 w-full p-2 lg:hidden">
+                <div className="bg-base-100 p-3 rounded-box shadow-lg border border-primary/30 flex justify-between items-center">
                     <div onClick={() => navigate("/app/settings")}>
                         <MdOutlineSettingsSuggest className={`w-8 h-8 m-auto duration-300 ${location.pathname.startsWith('/app/settings') ? 'scale-90' : ''}`}/>
                         <p className="text-[0.6rem] text-base-content/70">Настройки</p>
