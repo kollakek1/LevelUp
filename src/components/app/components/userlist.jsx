@@ -5,29 +5,41 @@ export default function Routing({ user }) {
     const navigate = useNavigate();
 
     return (
-        <div className="relative w-full lg:w-72">
-            <div className="h-screen w-full bg-base-200 p-2">
-                <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
-                    <MdPeopleAlt className="w-7 h-7"/>
-                    Друзья
-                </button>
-                <p className="mt-3 text-sm font-medium text-center opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
-                <div className="mt-2 w-full flex flex-col gap-1">
-                    <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/nigger")}>
-                        <p className="text-sm font-medium">Nigger</p>
+        <>
+            <div className="relative w-full lg:w-72">
+                <div className="h-screen w-full bg-base-200 p-2">
+                    <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
+                        <MdPeopleAlt className="w-7 h-7"/>
+                        Друзья
+                    </button>
+                    <p className="mt-3 text-sm font-medium text-center opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
+                    <div className="mt-2 w-full flex flex-col gap-1">
+                        <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/nigger")}>
+                            <p className="text-sm font-medium">Nigger</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="absolute bottom-0 bg-base-300 w-full h-14 p-2 flex justify-between max-lg:hidden">
+                    <div>
+                        <p className="text-md font-medium">{user.username}</p>
+                    </div>
+                    <div className="my-auto">
+                        <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="Настройки" onClick={() => navigate("/app/settings")}>
+                            <MdOutlineSettingsSuggest className="w-7 h-7"/>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className="absolute bottom-0 bg-base-300 w-full h-14 p-2 flex justify-between">
-                <div>
-                    <p className="text-md font-medium">{user.username}</p>
-                </div>
-                <div className="my-auto">
-                    <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="Настройки" onClick={() => navigate("/app/settings")}>
-                        <MdOutlineSettingsSuggest className="w-7 h-7"/>
-                    </button>
+            <div className="fixed bottom-0 w-full p-4 lg:hidden">
+                <div className="bg-base-100 p-4 rounded-box shadow-lg border border-primary/30 flex justify-between items-center">
+                    <div onClick={() => navigate("/app/settings")}>
+                        <MdOutlineSettingsSuggest className={`w-8 h-8 m-auto duration-300 ${location.pathname.startsWith('/app/settings') ? 'scale-90' : ''}`}/>
+                        <p className="text-[0.6rem] text-base-content/70">Настройки</p>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </>
+
     );
 }

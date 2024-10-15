@@ -13,5 +13,5 @@ export default defineConfig({
   adapter: vercel(),
   security: {
         checkOrigin: true
-    }
+  }
 });

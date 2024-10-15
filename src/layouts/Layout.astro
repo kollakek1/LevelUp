@@ -10,7 +10,7 @@ import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!doctype html>
-<html lang="ru" data-theme="black">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="ЛевелАп — общайся, играй, развивайся! Это новый игровой мессенджер для русскоязычных пользователей, объединяющий людей со всего мира." />
@@ -43,7 +43,7 @@ import { ViewTransitions } from 'astro:transitions';
 
     <ViewTransitions />
   </head>
-  <body class={fixed ? "overflow-hidden" : ""}>
+  <body class={`${fixed ? "overflow-hidden" : ""}`}>
       <slot />
   </body>
 </html>

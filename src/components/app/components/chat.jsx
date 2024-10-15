@@ -1,7 +1,7 @@
 import { MdArrowBackIos, MdOutlineAddCircle, MdSend } from "react-icons/md";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Message from "./chat/message";
 
@@ -34,7 +34,6 @@ export default function Chat({ user, active }) {
         const text = e.target.innerText.trim();
         setContent(text);
     };
-
 
     return (
         <div className={`transition-all duration-500 h-screen w-full max-lg:bg-base-100 absolute lg:p-4 ${active ? "translate-y-0" : "max-lg:translate-x-full lg:translate-y-full pointer-events-none"}`}>
