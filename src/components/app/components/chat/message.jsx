@@ -1,12 +1,12 @@
-export default function Message({ message, comapact }) {
-    if (comapact) {
+export default function Message({ message, compact }) {
+    if (compact) {
         return (
-            <div className="flex items-start w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn">
+            <div className="flex w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn">
                 <p>{message.text}</p>
             </div>
         );
     }
-    else{
+    else if (!compact) {
         return (
             <div className="flex items-start w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn mt-1">
                 <div>

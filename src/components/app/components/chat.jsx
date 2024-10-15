@@ -10,22 +10,10 @@ export default function Chat({ user, active }) {
     const navigate = useNavigate();
 
     const [messages, setMessages] = useState([
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 40 * 48) },
-        { id: 2, user: { username: "User1" }, text: "Как дела?", time: new Date() },
-        { id: 3, user: { username: "User2" }, text: "Все отлично!", time: new Date() },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 60 * 48) },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 40 * 100) },
-        { id: 2, user: { username: "User1" }, text: "Как дела?", time: new Date() },
-        { id: 3, user: { username: "User2" }, text: "Все отлично!", time: new Date() },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 60 * 240) },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 40 * 24) },
-        { id: 2, user: { username: "User1" }, text: "Как дела?", time: new Date() },
-        { id: 3, user: { username: "User2" }, text: "Все отлично!", time: new Date() },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 60 * 24) },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 40 * 24) },
-        { id: 2, user: { username: "User1" }, text: "Как дела?", time: new Date() },
-        { id: 3, user: { username: "User2" }, text: "Все отлично!", time: new Date() },
-        { id: 1, user: { username: "User1" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 60 * 24) },
+        { id: 1, user: { username: "TestUser" }, text: "Привет!", time: new Date(Date.now() - 1000 * 60 * 40 * 48) },
+        { id: 2, user: { username: "TestUser" }, text: "Как дела?", time: new Date(Date.now() - 1000 * 60 * 40 * 48) },
+        { id: 3, user: { username: "kollakek" }, text: "Все отлично!", time: new Date() },
+
     ]);
 
     const [content, setContent] = useState('');
@@ -35,17 +23,23 @@ export default function Chat({ user, active }) {
         setContent(text);
     };
 
+    useEffect(() => {
+        const elem = document.querySelector('.chat-messages');
+        elem.scrollTop = elem.scrollHeight;
+    }, [messages]);
+    
+
     return (
         <div className={`transition-all duration-500 h-screen w-full max-lg:bg-base-100 absolute lg:p-4 ${active ? "translate-y-0" : "max-lg:translate-x-full lg:translate-y-full pointer-events-none"}`}>
             <div className="w-full h-full relative flex flex-col">
                 {/* Header */}
                 <div className="w-full bg-base-200 lg:rounded-box p-3 flex items-center justify-between shadow-md">
                     <MdArrowBackIos className="w-7 h-7 lg:hidden" onClick={() => navigate("/app/@me")} />
-                    <h2 className="text-sm font-medium">Your Title</h2>
+                    <h2 className="text-sm font-medium">TestUser</h2>
                 </div>
 
                 {/* Message container */}
-                <div className="flex-grow overflow-y-auto p-2 space-y-2">
+                <div className="flex-grow overflow-y-auto p-2 chat-messages">
                     {messages
                         .sort((a, b) => a.time - b.time)
                         .map((message, index) => (
