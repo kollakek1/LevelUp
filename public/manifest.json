@@ -1,0 +1,25 @@
+{
+    "name": "LevelUp",
+    "short_name": "LevelUp",
+    "description": "LevelUp - Мессенджер для геймеров",
+    "start_url": "/app",
+    "display": "standalone",
+    "background_color": "#1f2937",
+    "theme_color": "#3730a3",
+    "orientation": "portrait",
+    "scope": "/",
+    "icons": [
+      {
+        "src": "/assets/icons/UP.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/UP.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "lang": "ru-RU"
+  }
+  
