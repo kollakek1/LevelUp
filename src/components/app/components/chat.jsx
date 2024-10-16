@@ -101,6 +101,12 @@ export default function Chat({ user, active, setUserProfile }) {
     
     };
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            loadChat();
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         if (window.location.pathname.startsWith('/app/@me/')) {
