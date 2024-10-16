@@ -120,7 +120,7 @@ export default function Chat({ user, active, setUserProfile }) {
                     {/* Header */}
                     <div className="w-full bg-base-200 lg:rounded-box p-3 flex items-center justify-between shadow-md">
                         <MdArrowBackIos className="w-7 h-7 lg:hidden" onClick={() => navigate("/app/@me")} />
-                        <h2 className="text-sm font-medium cursor-pointer" onClick={() => setUserProfile({username: "TestUser"})}>TestUser</h2>
+                        <h2 className="text-sm font-medium cursor-pointer" onClick={() => setUserProfile({username: "TestUser"})}>{chats[currentChatId]?.name}</h2>
                     </div>
 
                     {/* Message container */}
