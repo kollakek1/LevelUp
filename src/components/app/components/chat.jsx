@@ -24,22 +24,26 @@ export default function Chat({ user, active, setUserProfile }) {
             return;
         }
 
-        // const newMessage = {
-        //     chatId: currentChatId,
-        //     message: content.trim(),
-        //     time: new Date(),
-        //     user: {
-        //         id: user.id,
-        //         username: user.username
-        //     }
-        // };
+        const newMessage = {
+            chatId: currentChatId,
+            message: content.trim(),
+            time: new Date(),
+            user: {
+                id: user.id,
+                username: user.username
+            }
+        };
+        setChats((prevChats) => {
+            const updatedChat = {
+                ...prevChats[currentChatId],
+                messages: [...prevChats[currentChatId].messages, newMessage],
+            };
 
-        // setChats((prevChats) => {
-        //     return {
-        //         ...prevChats,
-        //         [currentChatId]: [...(prevChats[currentChatId] || []), newMessage]
-        //     };
-        // });
+            return {
+                ...prevChats,
+                [currentChatId]: updatedChat,
+            };
+        });
 
         fetch(`/api/chats/message/sendmessage`, {
             headers: {
