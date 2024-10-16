@@ -140,17 +140,28 @@ export default function Chat({ user, active, setUserProfile }) {
                     {/* Message container */}
                     <div className="flex-grow overflow-y-auto p-2 chat-messages">
                         {chats[currentChatId]?.messages
-                        .sort((a, b) => new Date(a.time) - new Date(b.time))
-                        .map((message, index) => (
-                            <div key={message._id}>
-                                {index > 0 && new Date(chats[currentChatId].messages[index].time).getDate() !== new Date(chats[currentChatId].messages[index - 1].time).getDate() && (
-                                    <div className="divider text-center text-sm text-base-content/30">
-                                        {new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(chats[currentChatId].messages[index].time)).replace('г.', 'г.')}
-                                    </div>
-                                )}
-                                <Message key={message._id} setUserProfile={setUserProfile} message={message} compact={index > 0 && new Date(chats[currentChatId].messages[index].time) - new Date(chats[currentChatId].messages[index - 1].time) < 120000} />
-                            </div>
-                        ))}
+                            .sort((a, b) => new Date(a.time) - new Date(b.time))
+                            .map((message, index) => (
+                                <div key={message._id}>
+
+                                    {index > 0 && new Date(chats[currentChatId].messages[index].time).getDate() !== new Date(chats[currentChatId].messages[index - 1].time).getDate() && (
+                                        <div className="divider text-center text-sm text-base-content/30">
+                                            {new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(chats[currentChatId].messages[index].time)).replace('г.', 'г.')}
+                                        </div>
+                                    )}
+
+                                    <Message 
+                                        key={message._id} 
+                                        setUserProfile={setUserProfile} 
+                                        message={message} 
+                                        compact={index > 0 &&
+                                            new Date(chats[currentChatId].messages[index].time) - new Date(chats[currentChatId].messages[index - 1].time) < 120000 && 
+                                            chats[currentChatId].messages[index].user.id === chats[currentChatId].messages[index - 1].user.id
+                                        }
+                                    />
+                                </div>
+                            ))
+                        }
                     </div>
 
                     {/* Input field */}
