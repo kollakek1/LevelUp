@@ -90,6 +90,8 @@ export default function Chat({ user, active, setUserProfile }) {
                     ...prevChats,
                     [chatId]: data
                 }));
+            
+
             } else {
                 console.error('Empty or invalid data:', data);
             }
@@ -115,9 +117,15 @@ export default function Chat({ user, active, setUserProfile }) {
             loadChat();
 
         }
-        const elem = document.querySelector('.chat-messages');
-        elem.scrollTop = elem.scrollHeight;
     }, [active]);
+
+    useEffect(() => {
+        if (currentChatId) {
+            const chatMessages = document.querySelector('.chat-messages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            document.getElementById('chat-input').focus();
+        }
+    }, [chats]);
 
     return (
         <>  
