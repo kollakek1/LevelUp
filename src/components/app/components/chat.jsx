@@ -104,7 +104,7 @@ export default function Chat({ user, active, setUserProfile }) {
     useEffect(() => {
         const interval = setInterval(() => {
             loadChat();
-        }, 1000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
