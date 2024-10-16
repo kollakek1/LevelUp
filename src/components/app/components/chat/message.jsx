@@ -18,7 +18,8 @@ export default function Message({ message, compact, setUserProfile }) {
                         <span className="text-sm opacity-70 tooltip tooltip-right" data-tip={
                             (() => {
                                 const now = Date.now() / 1000;
-                                const diff = now - message.time / 1000;
+                                const date = new Date(message.time);
+                                const diff = (Date.now() - date.getTime()) / 1000;
                                 if (diff < 60) return 'менее минуты назад';
                                 if (diff < 120) return 'минуту назад';
                                 if (diff < 3600) return `${Math.floor(diff / 60)} минут${diff / 60 < 5 ? 'ы' : ''} назад`;

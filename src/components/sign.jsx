@@ -41,6 +41,8 @@ export default function Sign(){
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            username: formData.get("username"),
+            login: formData.get("login"),
             email: formData.get("email"),
             password: formData.get("password"),
           }),
