@@ -2,13 +2,13 @@ export default function Message({ message, compact, setUserProfile }) {
     if (compact) {
         return (
             <div className="flex w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn">
-                <p>{message.text}</p>
+                <p>{message.message}</p>
             </div>
         );
     }
     else if (!compact) {
         return (
-            <div className="flex items-start w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn mt-1">
+            <div className="flex items-start w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn mt-1.5">
                 <div>
 
                 </div>
@@ -22,7 +22,7 @@ export default function Message({ message, compact, setUserProfile }) {
                                 const diff = (Date.now() - date.getTime()) / 1000;
                                 if (diff < 60) return 'менее минуты назад';
                                 if (diff < 120) return 'минуту назад';
-                                if (diff < 3600) return `${Math.floor(diff / 60)} минут${diff / 60 < 5 ? 'ы' : ''} назад`;
+                                if (diff < 3600) return `${Math.floor(diff / 60)} минут назад`;
                                 if (diff < 7200) return `${Math.floor(diff / 3600)} часа назад`;
                                 if (diff < 86400) return `${Math.floor(diff / 3600)} часов назад`;
                                 if (diff < 604800) return `${Math.floor(diff / 86400)} дней назад`;
