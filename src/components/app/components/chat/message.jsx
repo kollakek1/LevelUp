@@ -1,4 +1,4 @@
-export default function Message({ message, compact }) {
+export default function Message({ message, compact, setUserProfile }) {
     if (compact) {
         return (
             <div className="flex w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn">
@@ -14,7 +14,7 @@ export default function Message({ message, compact }) {
                 </div>
                 <div>
                     <div className="flex items-end gap-2">
-                        <p className="font-medium hover:link">{message.user.username}</p>
+                        <p className="font-medium hover:link" onClick={() => setUserProfile(message.user)}>{message.user.username}</p>
                         <span className="text-sm opacity-70 tooltip tooltip-right" data-tip={
                             (() => {
                                 const now = Date.now() / 1000;
@@ -31,7 +31,7 @@ export default function Message({ message, compact }) {
                             {new Intl.DateTimeFormat('ru-RU', {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(message.time))}
                         </span>
                     </div>
-                    <p>{message.text}</p>
+                    <p>{message.message}</p>
                 </div>
             </div>
         );

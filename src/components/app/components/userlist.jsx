@@ -1,8 +1,19 @@
 import { MdPeopleAlt, MdOutlineSettingsSuggest, MdOutlineNewspaper, MdOutlineSentimentVerySatisfied } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 export default function Routing({ user, setUserProfile, userProfile }) {
     const navigate = useNavigate();
+
+    const [chats, setChats] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/chats/getchats")
+            .then(res => res.json())
+            .then(data => setChats(data));
+        
+
+    }, []);
 
     return (
         <>
@@ -21,12 +32,14 @@ export default function Routing({ user, setUserProfile, userProfile }) {
 
                     <p className="mt-3 text-sm font-medium text-center opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
                     <div className="mt-2 w-full flex flex-col gap-1">
-                        <div className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex items-center max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/nigger")}>
-                            <div>
-                                <p className="text-sm font-medium">TestUser</p>
-                                <p className="text-xs">@TestUser</p>
+                        {chats.map(chat => (
+                            <div key={chat._id} className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex items-center max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/" + chat._id)}>
+                                <div>
+                                    <p className="text-sm font-medium">{chat.name}</p>
+                                    <p className="text-xs">@Test</p>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className="absolute bottom-0 bg-base-300 w-full h-14 p-2 flex justify-between max-lg:hidden">
