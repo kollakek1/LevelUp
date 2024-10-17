@@ -172,7 +172,7 @@ export default function Chat({ user, active, setUserProfile }) {
 
                                     {index > 0 && new Date(chats[currentChatId].messages[index].time).getDate() !== new Date(chats[currentChatId].messages[index - 1].time).getDate() && (
                                         <div className="divider text-center text-sm text-base-content/30">
-                                            {new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(chats[currentChatId].messages[index].time)).replace('г.', 'г.')}
+                                            {new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(chats[currentChatId].messages[index].time))}
                                         </div>
                                     )}
 
