@@ -39,7 +39,6 @@ export default function UserList({ user, setUserProfile, userProfile, setUserSea
                             <div key={chat._id} className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex items-center max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/" + chat._id)}>
                                 <div>
                                     <p className="text-sm font-medium">{chat.name}</p>
-                                    <p className="text-xs">@Test</p>
                                 </div>
                             </div>
                         ))}
