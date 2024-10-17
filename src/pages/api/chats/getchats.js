@@ -14,5 +14,20 @@ export async function GET({ request, locals }) {
 
     const chats = await db.collection("chats").find({ members: user.id }).toArray();
 
-    return new Response(JSON.stringify(chats));
+    const updatedChats = await Promise.all(chats.map(async (chat) => {
+        if (chat.type === 'private') {
+            const otherMemberId = chat.members.find(memberId => memberId !== user.id);
+
+            const otherMember = await db.collection("users").findOne({ _id: otherMemberId });
+
+            return {
+                ...chat,
+                name: otherMember ? otherMember.username : "Unknown"
+            };
+        }
+
+        return chat;
+    }));
+
+    return new Response(JSON.stringify(updatedChats));
 }

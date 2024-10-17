@@ -1,8 +1,9 @@
-import { MdPeopleAlt, MdOutlineSettingsSuggest, MdOutlineNewspaper, MdOutlineSentimentVerySatisfied } from "react-icons/md";
+import { MdPeopleAlt, MdOutlineSettingsSuggest, MdOutlineNewspaper, MdOutlineSentimentVerySatisfied, MdSearch } from "react-icons/md";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-export default function Routing({ user, setUserProfile, userProfile }) {
+export default function UserList({ user, setUserProfile, userProfile, setUserSearchActive }) {
     const navigate = useNavigate();
 
     const [chats, setChats] = useState([]);
@@ -10,8 +11,7 @@ export default function Routing({ user, setUserProfile, userProfile }) {
     useEffect(() => {
         fetch("/api/chats/getchats")
             .then(res => res.json())
-            .then(data => setChats(data));
-        
+            .then(data => setChats(data))
 
     }, []);
 
@@ -20,17 +20,20 @@ export default function Routing({ user, setUserProfile, userProfile }) {
             <div className="relative w-full lg:w-72">
                 <div className="h-screen w-full bg-base-200 p-2">
                     <div className="w-full flex flex-col gap-1">
-                        <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
+                        {/* <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
                             <MdPeopleAlt className="w-7 h-7"/>
                             Друзья
-                        </button>
-                        <button className="btn btn-ghost w-full" onClick={() => navigate("/app/@me")}>
+                        </button> */}
+                        <button className="btn btn-ghost w-full">
                             <MdOutlineNewspaper className="w-7 h-7"/>
                             Обновления
                         </button>
                     </div>
+                    <div className="flex items-center w-full justify-between mt-3">
+                        <p className="text-sm font-medium opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
+                        <MdSearch className="w-4 h-4 duration-100 opacity-70 hover:opacity-100 cursor-pointer" onClick={() => setUserSearchActive(true)}/>
+                    </div>
 
-                    <p className="mt-3 text-sm font-medium text-center opacity-70">ЛИЧНЫЕ СООБЩЕНИЯ</p>
                     <div className="mt-2 w-full flex flex-col gap-1">
                         {chats.map(chat => (
                             <div key={chat._id} className="w-full h-11 rounded-btn p-2 transition-colors duration-300 flex items-center max-lg:bg-base-100 lg:hover:bg-base-100 cursor-pointer" onClick={() => navigate("/app/@me/" + chat._id)}>

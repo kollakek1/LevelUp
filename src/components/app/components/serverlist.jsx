@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { MdPerson } from "react-icons/md";
 
-export default function Routing() {
+export default function ServerList() {
     const navigate = useNavigate();
 
     return (

@@ -64,9 +64,9 @@ export default function Sign(){
                     <h1 className="text-3xl font-bold mb-4">Левел<span className="text-primary">Ап</span> - авторизация</h1>
                     <label className="form-control w-full mb-2">
                         <div className="label">
-                            <span className="label-text">Логин или Email</span>
+                            <span className="label-text">Тег или Email</span>
                         </div>
-                        <input type="text" placeholder="Логин" name="login" className="input input-bordered w-full" />
+                        <input type="text" placeholder="Тег или почта" name="login" className="input input-bordered w-full" />
                     </label>
                     <label className="form-control w-full mb-5">
                         <div className="label">
@@ -94,7 +94,7 @@ export default function Sign(){
                     </label>
                     <label className="form-control w-full mb-2">
                         <div className="label">
-                            <span className="label-text">Логин</span>
+                            <span className="label-text">Тег</span>
                         </div>
                         <input type="text" name="login" placeholder="Например superman114" className="input input-bordered w-full" />
                     </label>

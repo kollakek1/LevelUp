@@ -104,28 +104,42 @@ export default function Chat({ user, active, setUserProfile }) {
     };
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            loadChat();
-        }, 2000);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
         if (window.location.pathname.startsWith('/app/@me/')) {
 
             setCurrentChatId(window.location.pathname.split('/').pop());
             loadChat();
 
         }
+        if (active) {
+            const interval = setInterval(() => {
+                loadChat();
+            }, 2000);
+
+            return () => clearInterval(interval);
+        }
     }, [active]);
+
+
+    useEffect(() => {
+        if (window.location.pathname.startsWith('/app/@me/')){
+            setCurrentChatId(window.location.pathname.split('/').pop());
+        }
+    }, [window.location.pathname.split('/').pop()]);
 
     useEffect(() => {
         if (currentChatId) {
             const chatMessages = document.querySelector('.chat-messages');
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            document.getElementById('chat-input').focus();
         }
     }, [chats]);
+
+    useEffect(() => {
+        if (currentChatId){
+            setTimeout(() => {
+                document.getElementById('chat-input').focus();
+            }, 500);
+        }
+    }, [currentChatId]);
 
     return (
         <>  
@@ -134,7 +148,19 @@ export default function Chat({ user, active, setUserProfile }) {
                     {/* Header */}
                     <div className="w-full bg-base-200 lg:rounded-box p-3 flex items-center justify-between shadow-md">
                         <MdArrowBackIos className="w-7 h-7 lg:hidden" onClick={() => navigate("/app/@me")} />
-                        <h2 className="text-sm font-medium cursor-pointer" onClick={() => setUserProfile({username: "TestUser"})}>{chats[currentChatId]?.name}</h2>
+                        <h2 
+                            className="text-sm font-medium cursor-pointer" 
+                            onClick={() => {
+                                const otherMemberId = chats[currentChatId]?.members?.find(memberId => memberId !== user.id);
+                                
+                                setUserProfile({ 
+                                username: chats[currentChatId]?.name, 
+                                id: otherMemberId 
+                                });
+                            }}
+                            >
+                            {chats[currentChatId]?.name}
+                        </h2>
                     </div>
 
                     {/* Message container */}
