@@ -147,7 +147,7 @@ export default function Chat({ user, active, setUserProfile }) {
     return (
         <>
             <div className={`transition-all duration-500 h-screen w-full max-lg:bg-base-100 absolute lg:p-4 ${active ? "translate-y-0" : "max-lg:translate-x-full lg:translate-y-full pointer-events-none"}`}>
-                <div className="w-full h-full flex gap-4">
+                <div className={`w-full h-full flex ${inCall ? "gap-4" : ""}`}>
                     <div className="w-full h-full relative flex flex-col">
                         {/* Header */}
                         <div className="w-full bg-base-200 lg:rounded-box p-3 flex items-center justify-between shadow-md">
@@ -165,7 +165,7 @@ export default function Chat({ user, active, setUserProfile }) {
                                 >
                                 {chats[currentChatId]?.name}
                             </h2>
-                            <FaPhone className="w-5 h-5 cursor-pointer" onClick={() => setInCall(true)}/>
+                            <FaPhone className={`w-5 h-5 cursor-pointer duration-500 ${inCall ? "opacity-0 pointer-events-none" : ""}`} onClick={() => setInCall(true)}/>
                         </div>
 
                         {/* Message container */}
@@ -213,7 +213,7 @@ export default function Chat({ user, active, setUserProfile }) {
                             />
                         </div>
                     </div>
-                    {inCall ? <Call currentChatId={currentChatId} onCallEnd={() => setInCall(false)} /> : null}
+                    <Call currentChatId={currentChatId} onCallEnd={() => setInCall(false)} active={inCall} />
                 </div>
             </div>
         </>

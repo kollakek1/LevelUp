@@ -1,12 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import { createLocalAudioTrack, Room, RoomEvent } from 'livekit-client';
-import { AudioTrack } from '@livekit/components-react';
+import { IoCall } from "react-icons/io5";
 
-export default function Call({ currentChatId, onCallEnd }) {
+export default function Call({ currentChatId, onCallEnd, active }) {
     const [room, setRoom] = useState(null);
     const [connected, setConnected] = useState(false);
     const [participants, setParticipants] = useState([]);
-    const localVideoRef = useRef(null);
     const remoteVideoRef = useRef(null);
     const removeAudioTrack = useRef(null);
 
@@ -34,12 +33,6 @@ export default function Call({ currentChatId, onCallEnd }) {
                     setParticipants((prev) => prev.filter((p) => p !== participant));
                 });
 
-                room.on(RoomEvent.TrackSubscribed, (track, publication, participant) => {
-                    if (track.kind === 'video' && remoteVideoRef.current) {
-                        track.attach(remoteVideoRef.current);
-                    }
-                });
-
                 const audioTrack = await createLocalAudioTrack({
                     echoCancellation: true,
                     noiseSuppression: true,
@@ -65,7 +58,9 @@ export default function Call({ currentChatId, onCallEnd }) {
             }
         };
 
-        startCall();
+        if (active) {
+            startCall();
+        }
 
         return () => {
             if (room) {
@@ -73,27 +68,41 @@ export default function Call({ currentChatId, onCallEnd }) {
                 setConnected(false);
             }
         };
-    }, [currentChatId]);
+    }, [currentChatId, active]);
 
     const handleEndCall = () => {
         if (room) {
+            room.localParticipant.setMicrophoneEnabled(false);
             room.disconnect();
             onCallEnd();
         }
     };
 
     return (
-        <div className="call-container">
-            {connected ? (
-                <>
-                    <video ref={localVideoRef} autoPlay muted />
-                    <video ref={remoteVideoRef} autoPlay />
-                    <audio ref={removeAudioTrack} autoPlay/>
-                    <button onClick={handleEndCall} className="btn btn-danger">Завершить звонок</button>
-                </>
-            ) : (
-                <p>Подключение...</p>
-            )}
+        <div className={`duration-500 h-full bg-base-200 rounded-btn ${active ? '' : 'translate-x-full pointer-events-none w-0'}`}>
+            {
+                active && (
+                    <div className='w-72 h-full p-4 flex items-center justify-center'>
+                        <div className='flex flex-col items-center'>
+                            {
+                                connected ?
+                                (
+                                    <p>Подключено!</p>
+                                )
+                                : 
+                                (
+                                    <>
+                                        <p className='font-medium text-xl'>Подключение...</p>
+                                        <span className="loading loading-infinity w-24"></span>
+                                    </>
+                                )
+                            }
+                            <button className="btn btn-circle btn-error" onClick={handleEndCall}><IoCall className='w-7 h-7 rotate-90'/></button>
+                            <audio ref={removeAudioTrack} />
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }
