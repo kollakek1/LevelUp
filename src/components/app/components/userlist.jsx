@@ -55,7 +55,7 @@ export default function UserList({ user, setUserProfile, userProfile, setUserSea
                         <p className="text-md font-medium">{user.username}</p>
                     </div>
                     <div className="my-auto flex gap-1">
-                        <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="вкл/выкл микрофон" onClick={() => {
+                        {/* <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="вкл/выкл микрофон" onClick={() => {
                             setIsMuted(!isMuted);
                         }}>
                             {
@@ -65,7 +65,7 @@ export default function UserList({ user, setUserProfile, userProfile, setUserSea
                                 :
                                 <BsMicFill className="w-5 h-5 ml-1"/>
                             }
-                        </button>
+                        </button> */}
                         <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="Настройки" onClick={() => navigate("/app/settings")}>
                             <MdOutlineSettingsSuggest className="w-7 h-7"/>
                         </button>

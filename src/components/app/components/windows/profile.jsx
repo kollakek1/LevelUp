@@ -41,8 +41,8 @@ export default function Profile({ user, setUserProfile }) {
                     </div>
                     {!loading && userProfile && (
                         <div className="text-center mt-4">
-                            <p>Имя: {userProfile.name}</p>
-                            <p>Email: {userProfile.email}</p>
+                            <p>Имя: {userProfile.username}</p>
+                            {/* <p>Email: {userProfile.email}</p> */}
                         </div>
                     )}
                     {

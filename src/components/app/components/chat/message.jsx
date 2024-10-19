@@ -1,8 +1,21 @@
+import { FaPhone } from "react-icons/fa";
+
 export default function Message({ message, compact, setUserProfile }) {
     if (compact) {
         return (
             <div className="flex w-full px-2 py-0.5 duration-75 hover:bg-base-200/50 rounded-btn">
-                <p>{message.message}</p>
+                    {
+                       message.message ?
+                       <p className="whitespace-pre-wrap">{message.message}</p> 
+                       :
+                       message.type === "startcall" ?
+                       <div className="flex gap-2 items-center">
+                            <p>Начал(а) звонок</p>
+                            <FaPhone className="w-4 h-4"/>
+                       </div>
+                       :
+                       null
+                    }
             </div>
         );
     }
@@ -32,7 +45,19 @@ export default function Message({ message, compact, setUserProfile }) {
                             {new Intl.DateTimeFormat('ru-RU', {day: '2-digit', month: '2-digit', year: 'numeric'}).format(new Date(message.time))}
                         </span>
                     </div>
-                    <p>{message.message}</p>
+                    {
+                       message.message ?
+                       <p className="whitespace-pre-wrap">{message.message}</p> 
+                       :
+                       message.type === "startcall" ?
+                       <div className="flex gap-2 items-center">
+                            <p>Начал(а) звонок</p>
+                            <FaPhone className="w-4 h-4"/>
+                       </div>
+                       :
+                       null
+                    }
+                    
                 </div>
             </div>
         );

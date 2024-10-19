@@ -1,5 +1,6 @@
 import { connectToMongo } from "../../../../libs/mongodb";
 import { AccessToken } from 'livekit-server-sdk';
+import { generateIdFromEntropySize } from "lucia";
 
 export async function GET({ request, locals, params }) {
 
@@ -23,6 +24,19 @@ export async function GET({ request, locals, params }) {
             return new Response(JSON.stringify({ error: "You are not a member of this chat" }), { status: 403 });
         }
     }
+
+    const newMessage = {
+        _id: generateIdFromEntropySize(15),
+        chatId: chatId,
+        type: "startcall",
+        time: new Date(),
+        user: {
+            id: user.id,
+            username: user.username
+        }
+    };
+
+    const result = await db.collection("messages").insertOne(newMessage);
 
     const roomName = chatId;
     const participantName = user.username;

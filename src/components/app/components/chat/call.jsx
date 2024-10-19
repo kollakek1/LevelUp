@@ -6,7 +6,7 @@ export default function Call({ currentChatId, onCallEnd, active }) {
     const [room, setRoom] = useState(null);
     const [connected, setConnected] = useState(false);
     const [participants, setParticipants] = useState([]);
-    const [mute, setMute] = useState(true);
+    const [mute, setMute] = useState(false);
     const remoteVideoRef = useRef(null);
     const removeAudioTrack = useRef(null);
 
@@ -86,13 +86,6 @@ export default function Call({ currentChatId, onCallEnd, active }) {
         }
     }, [mute, room, localStorage.getItem('isMuted')]);
 
-    useEffect(() => {
-        console.log(localStorage.getItem('isMuted'));
-        if (room) {
-            setMute(localStorage.getItem('isMuted') === 'true');
-        }
-    }, [localStorage.getItem('isMuted')]);
-
     return (
         <div className={`duration-500 h-full bg-base-200 max-lg:fixed top-0 left-0 rounded-btn ${active ? '' : 'translate-x-full pointer-events-none w-0'}`}>
             {
@@ -102,7 +95,7 @@ export default function Call({ currentChatId, onCallEnd, active }) {
                             {
                                 connected ?
                                 (
-                                    <p className='font-medium text-lg'>{participants.map(p => p.identity).join(', ')}</p>
+                                    <p className='font-medium text-lg'>Вы, {participants.map(p => p.identity).join(', ')}</p>
                                 )
                                 : 
                                 (
