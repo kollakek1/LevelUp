@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { createLocalAudioTrack, Room, RoomEvent } from 'livekit-client';
+import { AudioTrack } from '@livekit/components-react';
 
 export default function Call({ currentChatId, onCallEnd }) {
     const [room, setRoom] = useState(null);
@@ -7,6 +8,7 @@ export default function Call({ currentChatId, onCallEnd }) {
     const [participants, setParticipants] = useState([]);
     const localVideoRef = useRef(null);
     const remoteVideoRef = useRef(null);
+    const removeAudioTrack = useRef(null);
 
     useEffect(() => {
         const startCall = async () => {
@@ -47,11 +49,14 @@ export default function Call({ currentChatId, onCallEnd }) {
 
                 const audioPublication = await room.localParticipant.publishTrack(audioTrack);
 
-                if (localVideoRef.current) {
-                    const videoTrack = localTracks.find(track => track.kind === 'video');
-                    if (videoTrack) videoTrack.attach(localVideoRef.current);
-                }
-
+                room.on(RoomEvent.TrackSubscribed, (track, publication, participant) => {
+                    if (track.kind === 'video' && remoteVideoRef.current) {
+                        track.attach(remoteVideoRef.current);
+                    } else if (track.kind === 'audio') {
+                        track.attach(removeAudioTrack.current);
+                    }
+                });
+                
                 setConnected(true);
 
             } catch (error) {
@@ -83,6 +88,7 @@ export default function Call({ currentChatId, onCallEnd }) {
                 <>
                     <video ref={localVideoRef} autoPlay muted />
                     <video ref={remoteVideoRef} autoPlay />
+                    <audio ref={removeAudioTrack} autoPlay/>
                     <button onClick={handleEndCall} className="btn btn-danger">Завершить звонок</button>
                 </>
             ) : (
