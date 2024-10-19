@@ -80,10 +80,18 @@ export default function Call({ currentChatId, onCallEnd, active }) {
     };
 
     useEffect(() => {
+
         if (room) {
             room.localParticipant.setMicrophoneEnabled(mute);
         }
-    }, [mute, room]);
+    }, [mute, room, localStorage.getItem('isMuted')]);
+
+    useEffect(() => {
+        console.log(localStorage.getItem('isMuted'));
+        if (room) {
+            setMute(localStorage.getItem('isMuted') === 'true');
+        }
+    }, [localStorage.getItem('isMuted')]);
 
     return (
         <div className={`duration-500 h-full bg-base-200 max-lg:fixed top-0 left-0 rounded-btn ${active ? '' : 'translate-x-full pointer-events-none w-0'}`}>
@@ -106,7 +114,7 @@ export default function Call({ currentChatId, onCallEnd, active }) {
                             }
                             <div className='flex gap-2 mt-4'>
                                 <button className="btn btn-circle max-lg:btn-lg btn-error" onClick={handleEndCall}><IoCall className='w-7 h-7 rotate-90'/></button>
-                                <button className={`btn btn-circle max-lg:btn-lg ${mute ? 'btn-neutral' : 'btn-primary'}`} onClick={() => setMute(!mute)}>{mute ? <BsMicFill className='w-5 h-5'/> : <BsMicMuteFill className='w-5 h-5'/>}</button>
+                                <button className={`btn btn-circle max-lg:btn-lg ${mute ? 'btn-neutral' : 'btn-primary'}`} onClick={() => setMute(!mute)}>{mute ? <BsMicMuteFill className='w-5 h-5'/> : <BsMicFill className='w-5 h-5'/>}</button>
                             </div>
                             <audio ref={removeAudioTrack} />
                         </div>

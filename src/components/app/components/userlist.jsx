@@ -1,4 +1,5 @@
 import { MdPeopleAlt, MdOutlineSettingsSuggest, MdOutlineNewspaper, MdOutlineSentimentVerySatisfied, MdSearch } from "react-icons/md";
+import { BsMicMuteFill, BsMicFill } from "react-icons/bs";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -7,6 +8,7 @@ export default function UserList({ user, setUserProfile, userProfile, setUserSea
     const navigate = useNavigate();
 
     const [chats, setChats] = useState([]);
+    const [isMuted, setIsMuted] = useState(false);
 
     useEffect(() => {
         fetch("/api/chats/getchats")
@@ -14,6 +16,10 @@ export default function UserList({ user, setUserProfile, userProfile, setUserSea
             .then(data => setChats(data))
 
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem("isMuted", isMuted.toString());
+    }, [isMuted]);
 
     return (
         <>
@@ -48,7 +54,18 @@ export default function UserList({ user, setUserProfile, userProfile, setUserSea
                     <div>
                         <p className="text-md font-medium">{user.username}</p>
                     </div>
-                    <div className="my-auto">
+                    <div className="my-auto flex gap-1">
+                        <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="вкл/выкл микрофон" onClick={() => {
+                            setIsMuted(!isMuted);
+                        }}>
+                            {
+                                isMuted
+                                ? 
+                                <BsMicMuteFill className="w-5 h-5 ml-1"/>
+                                :
+                                <BsMicFill className="w-5 h-5 ml-1"/>
+                            }
+                        </button>
                         <button className="btn btn-ghost btn-sm btn-square tooltip" data-tip="Настройки" onClick={() => navigate("/app/settings")}>
                             <MdOutlineSettingsSuggest className="w-7 h-7"/>
                         </button>
